@@ -8,8 +8,7 @@ public class HomeController {
 
     @RequestMapping("/demo")
     public String demo() {
-        EnvTestConfig config = new EnvTestConfig();
-        System.out.print(config.getServerPort());
+
         return "Spring Boot Demo 修改";
     }
 
