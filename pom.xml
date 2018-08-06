@@ -28,10 +28,20 @@
 	<dependencies>
 		<!--Spring Boot通过Starter来提供服务，默认已提供一系列的Starter,都是以spring-boot-starter-xx命名的-->
 		<!--起步依赖，此处创建的是Web工程，必须添加spring-boot-starter-web依赖-->
+
+		<!--web程序-->
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		-->
+		<!--应用程序-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -43,6 +53,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>

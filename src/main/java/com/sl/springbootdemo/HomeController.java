@@ -1,3 +1,5 @@
+
+/*
 package com.sl.springbootdemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,3 +48,4 @@ public class HomeController {
 
 
 }
+*/
