@@ -10,9 +10,9 @@ public class UserService {
 
     //同监听器作用
     @EventListener(classes = {MyApplicationEvent.class})
-    public  void listen(MyApplicationEvent event){
+    public void listen(MyApplicationEvent event) {
 
-        System.out.println("UserService 监听到事件："+event.getMessage());
+        System.out.println("UserService 监听到事件：" + event.getMessage());
 
     }
 

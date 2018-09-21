@@ -4,9 +4,9 @@ import org.springframework.context.ApplicationEvent;
 
 public class MyApplicationEvent extends ApplicationEvent {
 
-    private  String message;
+    private String message;
 
-    public MyApplicationEvent(Object source,String message) {
+    public MyApplicationEvent(Object source, String message) {
         super(source);
         this.message = message;
     }

@@ -16,14 +16,14 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         // TODO Auto-generated method stub
-        System.out.println("执行 postProcessBeforeInitialization..."+beanName+"=>"+bean);
+        System.out.println("执行 postProcessBeforeInitialization..." + beanName + "=>" + bean);
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         // TODO Auto-generated method stub
-        System.out.println("执行 postProcessAfterInitialization..."+beanName+"=>"+bean);
+        System.out.println("执行 postProcessAfterInitialization..." + beanName + "=>" + bean);
         return bean;
     }
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class MyApplicationListener implements ApplicationListener<MyApplicationEvent> {
     @Override
     public void onApplicationEvent(MyApplicationEvent event) {
-        System.out.println("监听到事件："+event);
+        System.out.println("监听到事件：" + event);
     }
 
     /*

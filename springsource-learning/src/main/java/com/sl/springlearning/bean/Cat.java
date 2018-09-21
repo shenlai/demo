@@ -5,9 +5,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Cat implements InitializingBean,DisposableBean {
+public class Cat implements InitializingBean, DisposableBean {
 
-    public Cat(){
+    public Cat() {
         System.out.println("执行cat构造函数");
     }
 

@@ -6,12 +6,11 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-
 public class LifeCycleTest {
 
 
     @Test
-    public  void test01(){
+    public void test01() {
         //创建IOC容器,注入单实例bean
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
         applicationContext.getBean(Car.class);

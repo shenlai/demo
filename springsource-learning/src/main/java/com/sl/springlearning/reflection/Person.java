@@ -2,19 +2,20 @@ package com.sl.springlearning.reflection;
 
 public class Person {
 
-    public  String address;
+    public String address;
 
-    protected  int sex;
+    protected int sex;
 
-    private  String name;
-    private  Integer age;
+    private String name;
+    private Integer age;
 
-    public  Person(String name,Integer age){
+    public Person(String name, Integer age) {
         this.age = age;
         this.name = name;
     }
 
-    public  Person(){}
+    public Person() {
+    }
 
 
     public String getName() {
@@ -26,7 +27,7 @@ public class Person {
     }
 
     //测试反射
-    private  void handleAddress(){
+    private void handleAddress() {
 
     }
 

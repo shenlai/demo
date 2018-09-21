@@ -207,18 +207,18 @@ public class ReflectionTest {
     public void testSupperPrivateField() throws Exception {
         String className = "com.sl.springlearning.reflection.Student";
 
-        String fieldName="school";
+        String fieldName = "school";
         Object fieldVal = "测试名称";
 
-        Object object =null;
+        Object object = null;
         Class clazz = Class.forName(className);
-        Field field = getField(clazz,fieldName);
+        Field field = getField(clazz, fieldName);
         object = clazz.newInstance();
 
-        setFieldValue(object,field,fieldVal);
+        setFieldValue(object, field, fieldVal);
 
         //获取属性值
-        Object val = getFieldValue(object,field);
+        Object val = getFieldValue(object, field);
         System.out.println(val);
     }
 
@@ -227,19 +227,20 @@ public class ReflectionTest {
         for (Class c = clazz; c != Object.class; c = c.getSuperclass()) {
             //field = c.getDeclaredField(fieldName); 属性不存在则抛出异常
             Field[] fields = c.getDeclaredFields();
-            for (Field fi:fields){
-                if(fi.getName()==fieldName){
+            for (Field fi : fields) {
+                if (fi.getName() == fieldName) {
                     field = fi;
                     break;
                 }
             }
-            if(field!=null)
-                break;;
+            if (field != null)
+                break;
+            ;
         }
-        return  field;
+        return field;
     }
 
-    public Object getFieldValue(Object obj, Field field) throws Exception{
+    public Object getFieldValue(Object obj, Field field) throws Exception {
         field.setAccessible(true);
         return field.get(obj);
     }
@@ -251,9 +252,6 @@ public class ReflectionTest {
 
 
     /*构造函数https://www.cnblogs.com/tech-bird/p/3525336.html*/
-
-
-
 
 
 }

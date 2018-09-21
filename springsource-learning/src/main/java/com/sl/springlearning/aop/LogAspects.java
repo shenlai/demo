@@ -19,16 +19,19 @@ public class LogAspects {
     //1、本类引用
     //2、其他的切面引用
     @Pointcut("execution(public int com.sl.springlearning.aop.MathCaculator.*(..))")
-    public void pointCut(){};
+    public void pointCut() {
+    }
+
+    ;
 
     //@Before在目标方法之前切入；切入点表达式（指定在哪个方法切入）
     @Before("pointCut()")
-    public void logStart(){
+    public void logStart() {
         System.out.println("运行。。。@Before:参数列表是");
     }
 
     @After("pointCut()")
-    public void logEnd(){
+    public void logEnd() {
         System.out.println("结束。。。@After");
     }
 
@@ -36,14 +39,14 @@ public class LogAspects {
     //returning="result"  指定result接收返回值
     //JoinPoint joinPoint 含有方法本身信息，方法名，参数值等
     //JoinPoint作为参数 则不必作为第一个参数
-    @AfterReturning(value="pointCut()",returning="result")
-    public void logReturn(JoinPoint joinPoint, Object result){
-        System.out.println(""+joinPoint.getSignature().getName()+"正常返回，"+"参数列表："+Arrays.asList(joinPoint.getArgs())+"。。@AfterReturning:运行结果：{"+result+"}");
+    @AfterReturning(value = "pointCut()", returning = "result")
+    public void logReturn(JoinPoint joinPoint, Object result) {
+        System.out.println("" + joinPoint.getSignature().getName() + "正常返回，" + "参数列表：" + Arrays.asList(joinPoint.getArgs()) + "。。@AfterReturning:运行结果：{" + result + "}");
     }
 
-    @AfterThrowing(value="pointCut()",throwing="exception")
-    public void logException(JoinPoint joinPoint,Exception exception){
-        System.out.println(""+joinPoint.getSignature().getName()+"异常。。。异常信息：{"+exception+"}");
+    @AfterThrowing(value = "pointCut()", throwing = "exception")
+    public void logException(JoinPoint joinPoint, Exception exception) {
+        System.out.println("" + joinPoint.getSignature().getName() + "异常。。。异常信息：{" + exception + "}");
     }
 
 }

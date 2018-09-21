@@ -1,8 +1,8 @@
 package com.sl.springlearning.reflection;
 
-public class Student extends  Person {
+public class Student extends Person {
 
-    private   String grade;
+    private String grade;
 
     private String school;
 
