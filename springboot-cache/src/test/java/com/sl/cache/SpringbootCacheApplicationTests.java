@@ -2,6 +2,7 @@ package com.sl.cache;
 
 import com.sl.cache.entity.Product;
 import com.sl.cache.mapper.ProductMapper;
+import com.sl.cache.service.RedisLockService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
@@ -25,6 +26,9 @@ public class SpringbootCacheApplicationTests {
     @Autowired
     RedisTemplate redisTemplate;  //k- v 都是对象
 
+    @Autowired
+    private RedisLockService redisLockService;
+
     //@Autowired
     //RedisTemplate<Object,Product> prdRedisTemplate;
 
@@ -41,7 +45,7 @@ public class SpringbootCacheApplicationTests {
 
     }
 
-    @Test
+    //@Test
     public void test2() {
         Product product =  productMapper.getProductById(4L);
         //stringRedisTemplate.opsForValue().set("productid4",product);
@@ -51,8 +55,9 @@ public class SpringbootCacheApplicationTests {
         //1.1:自己将对象转换为json
         //xxxxx
         //1.2:修改redisTemplate默认的序列化规则
-        redisTemplate.opsForValue().set("produxtid4",product);
-
+        //redisTemplate.opsForValue().set("produxtid4",product);
+        Object o = redisTemplate.opsForValue().get("produxtid4");
+        System.out.println("查询结果:"+redisTemplate.opsForValue().get("produxtid4"));
     }
 
 
@@ -61,6 +66,17 @@ public class SpringbootCacheApplicationTests {
         Product product = productMapper.getProductById(4L);
 
         System.out.println(product);
+    }
+
+    @Test
+    public void testRedisLock() throws InterruptedException {
+        redisLockService.run();
+        Thread.sleep(30*1000); //延迟退出主线程
+    }
+
+    @Test
+    public void testRedisLockService(){
+        redisLockService.test();
     }
 
 }

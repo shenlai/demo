@@ -42,7 +42,6 @@ public class MyRedisConfig {
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
 
         RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
-
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(keySerializer());
         redisTemplate.setHashKeySerializer(keySerializer());
