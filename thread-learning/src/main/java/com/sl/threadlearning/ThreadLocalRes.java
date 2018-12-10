@@ -1,5 +1,7 @@
 package com.sl.threadlearning;
 
+import java.util.Hashtable;
+
 public class ThreadLocalRes {
 
     // 生成序列号共享变量
@@ -17,7 +19,11 @@ public class ThreadLocalRes {
         int count = threadLocal.get()+1;
         threadLocal.set(count);
         return  count;
+
+
     }
+
+
 }
 
 

@@ -47,7 +47,9 @@ import org.springframework.scheduling.annotation.Scheduled;
  * 3）、可以使用JSR250：
  *
  * @PostConstruct：在bean创建完成并且属性赋值完成；来执行初始化方法
- * @PreDestroy：在容器销毁bean之前通知我们进行清理工作 4）、BeanPostProcessor【interface】：bean的后置处理器  拦截所有Bean
+ * @PreDestroy：在容器销毁bean之前通知我们进行清理工作
+ *
+ * 4）、BeanPostProcessor【interface】：bean的后置处理器  拦截所有Bean
  * 在bean初始化前后拦截所有bean  进行一些处理工作；
  * postProcessBeforeInitialization:在初始化之前工作
  * postProcessAfterInitialization:在初始化之后工作

@@ -3,6 +3,10 @@ package com.sl.threadlearning.lockLearn;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 重入锁
+ * https://www.cnblogs.com/xrq730/p/4855155.html
+ */
 public class ResT {
 
     public String userSex;

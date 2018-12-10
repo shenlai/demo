@@ -1,7 +1,7 @@
 package com.sl.threadlearning.safe;
 
 /**
- *
+ *CountDownLatch
  * 死锁产生原因： 同步中嵌套同步，导致锁无法释放
  *
  */
