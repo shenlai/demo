@@ -6,19 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="autoconfig-bean" />
         <module name="springboot-cache" />
+        <module name="springboot-demo" />
         <module name="springboot-rabbitmq" />
-        <module name="springbootdemo" />
-        <module name="springsource-learning" />
+        <module name="thread-learning" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="autoconfig-bean" target="1.5" />
-      <module name="springboot-cache" target="1.8" />
-      <module name="springboot-rabbitmq" target="1.8" />
-      <module name="springbootdemo" target="1.8" />
-      <module name="springsource-learning" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,0 +1,24 @@
+### Java template
+# Log file
+*.log
+
+# Package Files #
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# idea
+**/.idea
+**/*.iml
+**/target
+out
+gen
+
+# eclipse
+**/.project
+**/.classpath
+**/.settings
+
