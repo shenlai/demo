@@ -25,7 +25,11 @@ public abstract class AbstractRetryStrategy implements ServiceUnavailableRetrySt
 
     public abstract boolean isRetry(HttpResponse httpResponse, int i, HttpContext httpContext);
 
-    public abstract void beforeRetryHandle();
+
+    public void beforeRetryHandle() {
+        System.out.println("预处理");
+    }
+
 
     public abstract int getMaxRetries();
 

@@ -12,16 +12,13 @@ public class DemoRetryStrategy extends AbstractRetryStrategy {
 
     @Override
     public boolean isRetry(HttpResponse httpResponse, int executionCount, HttpContext httpContext) {
+        System.out.println("执行DemoRetryStrategy-check");
         if (httpResponse.getStatusLine().getStatusCode() != 200)
             return true;
         else
             return false;
     }
 
-    @Override
-    public void beforeRetryHandle() {
-        //CtripConstant.refreshToken();
-    }
 
     @Override
     public long getRetryInterval() {
@@ -33,3 +30,5 @@ public class DemoRetryStrategy extends AbstractRetryStrategy {
         return 3;
     }
 }
+
+

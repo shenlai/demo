@@ -27,6 +27,7 @@ public class UnavailableRetryStrategy implements ServiceUnavailableRetryStrategy
 
     @Override
     public boolean retryRequest(HttpResponse response, int executionCount, HttpContext context) {
+        System.out.println("执行check判断");
         if (response.getStatusLine().getStatusCode() != 200 && executionCount < this.maxRetries)
             return true;
         else

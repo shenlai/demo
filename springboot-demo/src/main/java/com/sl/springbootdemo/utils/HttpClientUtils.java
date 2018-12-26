@@ -38,7 +38,7 @@ public class HttpClientUtils {
         if (retryStrategy != null) {
             return HttpClientBuilder.create().setServiceUnavailableRetryStrategy(retryStrategy).build();
         }
-        return HttpClientBuilder.create().setRetryHandler(new MyHttpRequestRetryHandler()).build();
+        return HttpClientBuilder.create().build();
     }
 
     /**
@@ -186,13 +186,13 @@ public class HttpClientUtils {
             responseData = httpRequest(requestUrl, requestData);
         } catch (WebServiceException e) {
             //-------重复请求-------------
-//			logger.warn("SOAP request error, try again", e);
-//			try {
-//				responseData = httpRequest(requestUrl, requestData);
-//			} catch (WebServiceException ex) {
+//          logger.warn("SOAP request error, try again", e);
+//try {
+//responseData = httpRequest(requestUrl, requestData);
+//} catch (WebServiceException ex) {
             logger.error("SOAP request error", e);
             throw e;
-//			}
+//}
         }
         logger.info("SOAP Response Message:[" + responseData + "]");
         return responseData;

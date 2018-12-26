@@ -46,5 +46,14 @@ public class HttpClientTest {
         System.out.println(res);
     }
 
+    @Test
+    public void TestJavaLasnguage() throws IOException {
+        DemoRetryStrategy instance = new DemoRetryStrategy();
+        instance.retryRequest(null,2,null);
+
+    }
+
+
+
 
 }
