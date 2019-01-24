@@ -86,6 +86,19 @@
             <version>1.2.31</version>
         </dependency>
 
+        <!--lombok 用于简化代码-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
