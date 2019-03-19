@@ -9,9 +9,11 @@ import org.springframework.context.annotation.ComponentScan;
 public class SpringsourceLearningApplication {
 
     public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(SpringsourceLearningApplication.class, args);
-        System.out.println(context.getBean("carFactoryBean"));//得到的是car:  com.sl.springlearning.bean.Car@16eccb2e
-        System.out.println(context.getBean("&carFactoryBean"));//得到的是car工厂  :com.sl.springlearning.bean.CarFactoryBean@495ee280
+        //ApplicationContext context = SpringApplication.run(SpringsourceLearningApplication.class, args);
+       // System.out.println(context.getBean("carFactoryBean"));//得到的是car:  com.sl.springlearning.bean.Car@16eccb2e
+       // System.out.println(context.getBean("&carFactoryBean"));//得到的是car工厂  :com.sl.springlearning.bean.CarFactoryBean@495ee280
+
+        SpringApplication.run(SpringsourceLearningApplication.class, args);
 
 
     }
