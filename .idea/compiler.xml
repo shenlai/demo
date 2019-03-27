@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="autoconfig-bean" />
+        <module name="kafka-demo" />
         <module name="springboot-cache" />
         <module name="springboot-demo" />
+        <module name="springboot-jdbc" />
         <module name="springboot-rabbitmq" />
         <module name="thread-learning" />
       </profile>
