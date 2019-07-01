@@ -9,11 +9,16 @@
         <module name="autoconfig-bean" />
         <module name="kafka-demo" />
         <module name="springboot-cache" />
+        <module name="springboot-canalclient" />
         <module name="springboot-demo" />
         <module name="springboot-jdbc" />
         <module name="springboot-rabbitmq" />
         <module name="thread-learning" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springboot-canalclient" target="1.8" />
+      <module name="springbootcanalclient" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
