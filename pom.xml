@@ -14,5 +14,6 @@
 		<module>./springboot-rabbitmq</module>
 		<module>./springboot-demo</module>
 		<module>./springsource-learning</module>
-  	</modules>
+        <module>language-demo</module>
+    </modules>
 </project>

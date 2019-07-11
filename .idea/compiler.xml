@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="autoconfig-bean" />
         <module name="kafka-demo" />
+        <module name="language-demo" />
         <module name="springboot-cache" />
         <module name="springboot-demo" />
         <module name="springboot-jdbc" />
