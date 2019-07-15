@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="autoconfig-bean" />
         <module name="kafka-demo" />
+        <module name="osm-demo" />
         <module name="springboot-cache" />
         <module name="springboot-canalclient" />
         <module name="springboot-demo" />
