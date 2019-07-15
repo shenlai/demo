@@ -2,6 +2,8 @@ package com.sl.springlearning.config;
 
 import com.sl.springlearning.aop.LogAspects;
 import com.sl.springlearning.aop.MathCaculator;
+import com.sl.springlearning.aoptest.AroundClass;
+import com.sl.springlearning.aoptest.AroundTwoClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +42,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy  //<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 @Configuration
-@ComponentScan("com.sl.springlearning.aop")
+//@ComponentScan("com.sl.springlearning.aop")
+@ComponentScan("com.sl.springlearning.aoptest")
 public class MainConfigOfAop {
 
     //业务逻辑类加入容器中
@@ -53,6 +56,16 @@ public class MainConfigOfAop {
     @Bean
     public LogAspects logAspects() {
         return new LogAspects();
+    }
+
+    @Bean
+    public AroundClass aroundClass() {
+        return new AroundClass();
+    }
+
+    @Bean
+    public AroundTwoClass aroundTwoClass() {
+        return new AroundTwoClass();
     }
 
 }
