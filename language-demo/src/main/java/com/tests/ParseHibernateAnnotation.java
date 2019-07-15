@@ -12,6 +12,19 @@ import java.lang.reflect.Method;
 /**
  * 解析注解
  * https://blog.csdn.net/qq1404510094/article/details/80577555
+ * <p>
+ * 1 : 按照作用域分
+ * 根据注解的作用域@Retention，注解分为
+ * RetentionPolicy.SOURCE： Java源文件上的注解
+ * RetentionPolicy.CLASS： Class类文件上的注解
+ * RetentionPolicy.RUNTIME： 运行时的注解
+ * <p>
+ * <p>
+ * 按照来源
+ * 按照注解的来源，也是分为3类
+ * 1. 内置注解 如@Override ，@Deprecated 等等
+ * 2. 第三方注解，如Hibernate, Struts等等
+ * 3. 自定义注解，如仿hibernate的自定义注解
  */
 public class ParseHibernateAnnotation {
 
@@ -43,23 +56,22 @@ public class ParseHibernateAnnotation {
 
             System.out.println("其他非主键属性分别对应的数据库字段如下：");
 
-            for(Method m:methods){
-                if(m==primaryKeyMethod){
+            for (Method m : methods) {
+                if (m == primaryKeyMethod) {
                     continue;
                 }
 
                 MyColumn myColumn = m.getAnnotation(MyColumn.class);
-                if(myColumn==null){
+                if (myColumn == null) {
                     continue; //setter方法没添加注解
                 }
-                String msg= String.format("属性：%s对应数据库字段为:%s",method2attribute(m.getName()),myColumn.value());
+                String msg = String.format("属性：%s对应数据库字段为:%s", method2attribute(m.getName()), myColumn.value());
                 System.out.println(msg);
 
             }
 
 
         }
-
 
 
     }
