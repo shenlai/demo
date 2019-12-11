@@ -9,12 +9,13 @@
     <modules>
         <module>./kafka-demo</module>
         <module>./springboot-jdbc</module>
-		<module>./thread-learning</module>
-		<module>./autoconfig-bean</module>
-		<module>./springboot-cache</module>
-		<module>./springboot-rabbitmq</module>
-		<module>./springboot-demo</module>
-		<module>./springsource-learning</module>
+        <module>./thread-learning</module>
+        <module>./autoconfig-bean</module>
+        <module>./springboot-cache</module>
+        <module>./demo-mq-provider</module>
+        <module>./demo-mq-consumer</module>
+        <module>./springboot-demo</module>
+        <module>./springsource-learning</module>
         <module>./springboot-canalclient</module>
         <module>language-demo</module>
         <module>./osm-demo</module>
