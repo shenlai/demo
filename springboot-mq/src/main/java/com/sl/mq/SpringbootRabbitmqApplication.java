@@ -1,4 +1,4 @@
-package com.sl.rabbitmq;
+package com.sl.mq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

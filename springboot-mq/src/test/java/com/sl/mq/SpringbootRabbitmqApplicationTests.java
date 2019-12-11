@@ -1,4 +1,4 @@
-package com.sl.rabbitmq;
+package com.sl.mq;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
