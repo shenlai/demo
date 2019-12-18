@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
  * @Description: TODO
  */
 @Component
-public class ActiveMqQueueProcessor {
+public class ActiveMqQueueBProcessor {
     /*
      * 监听和读取消息
      */
-    @JmsListener(destination = "active.queue.testA",containerFactory = "jmsListenerContainerQueue")
-    //@JmsListener(destination = "active.queue.test")
+    @JmsListener(destination = "active.queue.testB", containerFactory = "jmsListenerContainerQueue")
+    //@JmsListener(destination = "active.queue.testB")
     public void readActiveQueue(String message) {
-        System.out.println("ActiveMqQueueProcessor active.queue.testA  receive：" + message);
+        System.out.println("ActiveMqQueueBProcessor active.queue.testB  receive：" + message);
     }
 
 }

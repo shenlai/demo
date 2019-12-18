@@ -19,9 +19,5 @@
         <module name="thread-learning" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="springboot-canalclient" target="1.8" />
-      <module name="springbootcanalclient" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

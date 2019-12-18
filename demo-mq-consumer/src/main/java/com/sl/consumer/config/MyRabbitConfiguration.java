@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyRabbitConfiguration {
 
-        @Bean
-        public MessageConverter messageConverter(){
+    @Bean
+    public MessageConverter messageConverter() {
 
-            return new Jackson2JsonMessageConverter();
-        }
+        return new Jackson2JsonMessageConverter();
+    }
 
 }
