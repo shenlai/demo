@@ -131,7 +131,6 @@ public class ActiveMqConfiguration {
 //        jmsTemplate.setConnectionFactory(connectionFactorySl);
 //        return jmsTemplate;
 //    }
-
     @Bean("jmsListenerContainerQueueSl")
     public DefaultJmsListenerContainerFactory listener(@Qualifier("connectionFactorySl") ActiveMQConnectionFactory connectionFactorySl) {
         DefaultJmsListenerContainerFactory listener = new DefaultJmsListenerContainerFactory();

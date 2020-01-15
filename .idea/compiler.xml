@@ -7,13 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="autoconfig-bean" />
+        <module name="demo-canalclient" />
+        <module name="demo-file" />
+        <module name="demo-kafka" />
+        <module name="demo-language" />
         <module name="demo-mq-consumer" />
         <module name="demo-mq-provider" />
-        <module name="kafka-demo" />
-        <module name="language" />
         <module name="osm-demo" />
         <module name="springboot-cache" />
-        <module name="springboot-canalclient" />
         <module name="springboot-demo" />
         <module name="springboot-jdbc" />
         <module name="thread-learning" />

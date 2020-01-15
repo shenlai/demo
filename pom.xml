@@ -7,7 +7,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>./kafka-demo</module>
+        <module>./demo-kafka</module>
         <module>./springboot-jdbc</module>
         <module>./thread-learning</module>
         <module>./autoconfig-bean</module>
@@ -16,8 +16,8 @@
         <module>./demo-mq-consumer</module>
         <module>./springboot-demo</module>
         <module>./springsource-learning</module>
-        <module>./springboot-canalclient</module>
-        <module>language-demo</module>
+        <module>./demo-canalclient</module>
+        <module>./demo-language</module>
         <module>./osm-demo</module>
     </modules>
 </project>
