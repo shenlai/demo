@@ -1,4 +1,4 @@
-package com.sl.consumer.config;
+package com.sl.provider.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
-
-import javax.jms.Session;
 
 /**
  * @Author: sl
@@ -35,8 +33,7 @@ public class ActiveMqConfiguration {
         return jmsTemplate;
     }
 
-
-    /**************默认方式****************************************************/
+    //region /**************默认方式****************************************************/
     @Bean(name = "connectionFactory")
     public ActiveMQConnectionFactory connectionFactory() {
         return new ActiveMQConnectionFactory(brokerURL);
@@ -69,9 +66,9 @@ public class ActiveMqConfiguration {
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }
+    //endregion
 
-
-    /**************失败重试****************************************************/
+    //region/**************失败重试****************************************************/
 
     @Bean(name = "connectionFactorySl")
     public ActiveMQConnectionFactory connectionFactorySl(RedeliveryPolicy redeliveryPolicy) {
@@ -94,8 +91,8 @@ public class ActiveMqConfiguration {
         redeliveryPolicy.setUseExponentialBackOff(true);
         //设置重发最大拖延时间, -1表示没有拖延，只有setUseExponentialBackOff(true)时生效
         redeliveryPolicy.setMaximumRedeliveryDelay(-1);
-        //重发次数，默认重发10次
-        redeliveryPolicy.setMaximumRedeliveries(10);
+        //重发次数，默认3次
+        redeliveryPolicy.setMaximumRedeliveries(3);
         //重发时间间隔
         redeliveryPolicy.setInitialRedeliveryDelay(1);
         //第一次失败后重发等待500毫秒，第二次500*2， 依次类推
@@ -110,7 +107,7 @@ public class ActiveMqConfiguration {
      * ACK模式描述了Consumer与broker确认消息的方式(时机),比如当消息被Consumer接收之后,Consumer将在何时确认消息。
      * 对于broker而言，只有接收到ACK指令,才会认为消息被正确的接收或者处理成功了,通过ACK，可以在consumer（/producer）
      * 与Broker之间建立一种简单的“担保”机制.
-     *         
+     * 手动确认和单条消息确认需要手动的在客户端调用message.acknowledge()
      *
      * @param connectionFactorySl
      * @return
@@ -118,20 +115,18 @@ public class ActiveMqConfiguration {
 //    @Bean(name = "jmsTemplateSl")
 //    public JmsTemplate jmsTemplateSl(@Qualifier("connectionFactorySl") ActiveMQConnectionFactory connectionFactorySl) {
 //        JmsTemplate jmsTemplate = new JmsTemplate();
-//        //DeliveryMode.NON_PERSISTENT=1:非持久 ; DeliveryMode.PERSISTENT=2:持久
+//        //设置持久化 1非持久化，2持久化
 //        jmsTemplate.setDeliveryMode(2);
 //
-//        //手动确认和单条消息确认需要手动的在客户端调用message.acknowledge() /**
 //        // SESSION_TRANSACTED = 0  事物提交并确认
 //        // AUTO_ACKNOWLEDGE = 1    自动确认
 //        // CLIENT_ACKNOWLEDGE = 2    客户端手动确认   
 //        // DUPS_OK_ACKNOWLEDGE = 3    自动批量确认
-//        // INDIVIDUAL_ACKNOWLEDGE = 4  客户端签收模式( 单条消息确认)
+//        // INDIVIDUAL_ACKNOWLEDGE = 4  客户端签收模式
 //        jmsTemplate.setSessionAcknowledgeMode(4);
 //        jmsTemplate.setConnectionFactory(connectionFactorySl);
 //        return jmsTemplate;
 //    }
-
     @Bean("jmsListenerContainerQueueSl")
     public DefaultJmsListenerContainerFactory listener(@Qualifier("connectionFactorySl") ActiveMQConnectionFactory connectionFactorySl) {
         DefaultJmsListenerContainerFactory listener = new DefaultJmsListenerContainerFactory();
@@ -141,6 +136,7 @@ public class ActiveMqConfiguration {
         listener.setSessionAcknowledgeMode(4);
         return listener;
     }
+    //endregion
 
 
 }

@@ -30,8 +30,25 @@ public class ActiveMqProviderTest {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    //重试
+//    @Autowired
+//    private JmsTemplate jmsTemplateSl;
+
     @Autowired
     private ActiveMqProducer activeMqProducer;
+
+
+    /**
+     * 重试测试
+     */
+    @Test
+    public void sendActiveMqQueueRetry() {
+
+        String msg = "hello msg retryQueue";
+        jmsTemplate.convertAndSend("active.queue.retryTestA", msg);
+        //jmsTemplateSl.convertAndSend("active.queue.retryTestA", msg);
+    }
+
 
     @Test
     public void sendActiveMqQueueReceive() {
@@ -42,28 +59,26 @@ public class ActiveMqProviderTest {
     @Test
     public void sendActiveMqQueue1() {
 
-            String msg = "hello msg sdasd";
-            jmsTemplate.convertAndSend("active.queue.test", msg);
+        String msg = "hello msg sdasd";
+        jmsTemplate.convertAndSend("active.queue.test", msg);
     }
 
 
     @Test
     public void sendActiveMqQueue() {
-        for(int i=0;i<20;i++){
+        for (int i = 0; i < 1; i++) {
             String msg = "hello msg sdasd";
-            activeMqProducer.sendToQueue("active.queue.testA",msg);
+            activeMqProducer.sendToQueue("active.queue.testA", msg);
 
         }
 
     }
 
 
-
-
     @Test
     public void sendActiveMqQueueB() {
-        for(int i=0;i<20;i++){
-            activeMqProducer.sendToQueue("active.queue.testB","hello textB");
+        for (int i = 0; i < 20; i++) {
+            activeMqProducer.sendToQueue("active.queue.testB", "hello textB");
         }
     }
 
@@ -71,8 +86,8 @@ public class ActiveMqProviderTest {
     @Test
     public void sendActiveMqTopic() {
         String msg = "hello topic";
-        for(int i=0;i<20;i++){
-            activeMqProducer.sendToTopic("active.topicA.test",msg);
+        for (int i = 0; i < 20; i++) {
+            activeMqProducer.sendToTopic("active.topicA.test", msg);
         }
 
     }

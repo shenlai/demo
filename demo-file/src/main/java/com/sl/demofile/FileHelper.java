@@ -58,6 +58,31 @@ public class FileHelper {
         fileWriter.close();
     }
 
+
+    public static void txt2StringV3(File file, FileWriter fileWriter) throws IOException {
+        try {
+            // 创建BufferedReader，以gb2312的编码方式读取文件
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line = null;
+            // 按行读取文本，直到末尾（一般都这么写）
+            while ((line = reader.readLine()) != null) {
+                // 打印当前行字符串
+                line = replaceAllBlank(line);
+                if (Strings.isNotEmpty(line)) {
+                    if (line.contains("|true")) {
+                        String res = line.replace("|true", "");
+                        fileWriter.write(res + "\r\n");//写入 \r\n换行
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        fileWriter.flush();
+        fileWriter.close();
+    }
+
     //去除所有空格
     public static String replaceAllBlank(String str) {
         String s = "";
@@ -78,6 +103,59 @@ public class FileHelper {
         //File file = new File("E:\\图片数据处理\\404删除文件\\404删除文件\\0.txt");
         //System.out.println(txt2String(file));
 
+        //取删除图片数据
+        //getDeletePhoto();
+
+        getTargetPhotodate();
+    }
+
+
+
+    private static void getTargetPhotodate() {
+        List<File> files = new ArrayList<>();
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.0.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.1.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.2.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.3.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.4.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.5.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.6.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.7.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.8.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.9.log"));
+        files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.10.log"));
+
+
+        List<FileWriter> fileWriters = new ArrayList<>();
+        try {
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_0.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_1.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_2.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_3.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_4.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_5.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_6.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_7.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_8.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_9.txt"));
+            fileWriters.add(new FileWriter("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo_10.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        for (int i = 0; i <= 10; i++) {
+            try {
+                txt2StringV3(files.get(i), fileWriters.get(i));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("************读取" + i + "完成***************");
+        }
+    }
+
+
+    private static void getDeletePhoto() {
         List<File> files = new ArrayList<>();
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.0.log"));
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.1.log"));
@@ -116,9 +194,7 @@ public class FileHelper {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.print("************读取" + i + "完成***************");
+            System.out.println("************读取" + i + "完成***************");
         }
-
-
     }
 }
