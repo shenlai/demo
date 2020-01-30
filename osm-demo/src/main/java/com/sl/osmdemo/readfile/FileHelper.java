@@ -1,21 +1,31 @@
-package com.sl.demofile;
+package com.sl.osmdemo.readfile;
 
+import com.sl.osmdemo.entity.Photo;
+import com.sl.osmdemo.mapper.PhotoMapper;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @Author: sl
  * @Date: 2020/1/6
  * @Description: TODO
  */
+@Component
 public class FileHelper {
 
-    public static String txt2String(File file) {
+    @Resource
+    private PhotoMapper photoMapper;
+
+    public String txt2String(File file) {
         StringBuilder result = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
@@ -30,7 +40,7 @@ public class FileHelper {
         return result.toString();
     }
 
-    public static void txt2StringV2(File file, FileWriter fileWriter) throws IOException {
+    public void txt2StringV2(File file, FileWriter fileWriter) throws IOException {
         try {
 
             // 创建BufferedReader，以gb2312的编码方式读取文件
@@ -59,7 +69,7 @@ public class FileHelper {
     }
 
 
-    public static void txt2StringV3(File file, FileWriter fileWriter) throws IOException {
+    public void txt2StringV3(File file, FileWriter fileWriter) throws IOException {
         try {
             // 创建BufferedReader，以gb2312的编码方式读取文件
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -83,8 +93,105 @@ public class FileHelper {
         fileWriter.close();
     }
 
+    public void txt2StringV4(File file) {
+        try {
+            // 创建BufferedReader，以gb2312的编码方式读取文件
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line = null;
+            //List<Photo> photoList = new ArrayList<>();
+            System.out.println("开始执行：" + file.getPath());
+            // 按行读取文本，直到末尾（一般都这么写）
+            while ((line = reader.readLine()) != null) {
+                line = replaceAllBlank(line);
+                if (Strings.isNotEmpty(line)) {
+                    if (line.contains("|false")) {
+                        //TODO delete
+                        continue;
+                    }
+                    if (line.contains("|true")) {
+                        String[] strings = line.split("\\|");
+                        if (strings.length == 4) {
+                            //insert to db
+                            Photo photo = new Photo();
+                            photo.setPhotoId(Long.valueOf(strings[0]));
+                            String url = strings[1];
+                            url = url.replace("/picbak2/upload", "uploads");
+                            photo.setUrl(url);
+                            photo.setSize(strings[3]);
+                            photoMapper.updatePhoto(photo);
+                        }
+                    }
+                }
+            }
+            System.out.println("执行成功：" + file.getPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("执行失败：" + file.getPath());
+        }
+    }
+
+    public void txt2Sql(File file) {
+        try {
+            // 创建BufferedReader，以gb2312的编码方式读取文件
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line = null;
+            //List<Photo> photoList = new ArrayList<>();
+            System.out.println("开始执行：" + file.getPath());
+            // 按行读取文本，直到末尾（一般都这么写）
+            int i = 0;
+            List<String> photoIds = new ArrayList<>();
+            while ((line = reader.readLine()) != null) {
+                line = replaceAllBlank(line);
+                if (Strings.isNotEmpty(line)) {
+                    photoIds.add(line);
+                }
+
+                if (photoIds.size() == 2000000) {
+                    String fileName = "E:\\图片数据处理\\跑size文件\\delete_photo_id_insert_" + i + ".txt";
+                    FileWriter fileWriter = new FileWriter(fileName);
+                    String insertSql = "INSERT INTO photo_delete_id (photo_id) VALUES";
+                    StringBuilder insertBuilder = new StringBuilder();
+                    photoIds.forEach(x -> {
+                        insertBuilder.append("(").append(x).append("),");
+                    });
+                    String insertValues = insertBuilder.toString();
+                    insertValues = insertValues.substring(0, insertValues.length() - 1) + ";";
+                    fileWriter.write(insertSql + insertValues + "\r\n");//写入 \r\n换行  字符串太长，丢失？？
+                    fileWriter.flush();
+                    fileWriter.close();
+                    System.out.println("生成sql脚本：" + fileName);
+                    photoIds.clear();
+                    i++;
+                }
+            }
+
+            //最后一批photoIds
+            if (photoIds.size() > 0) {
+                String fileName = "E:\\图片数据处理\\跑size文件\\delete_photo_id_insert_" + i + ".txt";
+                String insertSql = "INSERT INTO photo_delete_id (photo_id) VALUES";
+                FileWriter fileWriter = new FileWriter(fileName);
+                StringBuilder insertBuilder = new StringBuilder();
+                photoIds.forEach(x -> {
+                    insertBuilder.append("(").append(x).append("),");
+                });
+                String insertValues = insertBuilder.toString();
+                insertValues = insertValues.substring(0, insertValues.length() - 1) + ";";
+                fileWriter.write(insertSql + insertValues + "\r\n");//写入 \r\n换行
+                fileWriter.flush();
+                fileWriter.close();
+                photoIds.clear();
+                System.out.println("生成sql脚本：" + fileName);
+            }
+            System.out.println("执行成功：" + file.getPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("执行失败：" + file.getPath());
+        }
+    }
+
+
     //去除所有空格
-    public static String replaceAllBlank(String str) {
+    public String replaceAllBlank(String str) {
         String s = "";
         if (str != null) {
             Pattern p = Pattern.compile("\\s*|\t|\r|\n");
@@ -104,14 +211,21 @@ public class FileHelper {
         //System.out.println(txt2String(file));
 
         //取删除图片数据
-        //getDeletePhoto();
+        //new FileHelper().getDeletePhoto();
 
-        getTargetPhotodate();
+        //移除待删除数据
+        //new FileHelper().getTargetPhotodata();
+
+
+        File file = new File("E:\\图片数据处理\\跑size文件\\hotel_photo_deleteId.txt");
+        new FileHelper().txt2Sql(file);
+        System.out.println("执行完成：" + file.getPath());
+
+
     }
 
 
-
-    private static void getTargetPhotodate() {
+    private void getTargetPhotodata() {
         List<File> files = new ArrayList<>();
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.0.log"));
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.1.log"));
@@ -155,7 +269,7 @@ public class FileHelper {
     }
 
 
-    private static void getDeletePhoto() {
+    private void getDeletePhoto() {
         List<File> files = new ArrayList<>();
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.0.log"));
         files.add(new File("E:\\图片数据处理\\404删除文件\\404删除文件\\hotel_photo.1.log"));
