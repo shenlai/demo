@@ -7,8 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="autoconfig-bean" />
-        <module name="demo-canalclient" />
-        <module name="demo-file" />
         <module name="demo-kafka" />
         <module name="demo-language" />
         <module name="demo-mq-consumer" />
@@ -19,6 +17,15 @@
         <module name="springboot-jdbc" />
         <module name="thread-learning" />
       </profile>
+      <profile name="Annotation profile for demo" enabled="true">
+        <sourceOutputDir name="../springboot-canalclient/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../springboot-canalclient/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo-canalclient" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo-file" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
