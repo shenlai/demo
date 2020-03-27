@@ -147,7 +147,7 @@ public class FileHelper {
                 }
 
                 if (photoIds.size() == 2000000) {
-                    String fileName = "E:\\图片数据处理\\跑size文件\\delete_photo_id_insert_" + i + ".txt";
+                    String fileName = "E:\\图片数据处理\\跑size文件\\V2_delete_photo_id_insert_" + i + ".txt";
                     FileWriter fileWriter = new FileWriter(fileName);
                     String insertSql = "INSERT INTO photo_delete_id (photo_id) VALUES";
                     StringBuilder insertBuilder = new StringBuilder();
@@ -167,7 +167,7 @@ public class FileHelper {
 
             //最后一批photoIds
             if (photoIds.size() > 0) {
-                String fileName = "E:\\图片数据处理\\跑size文件\\delete_photo_id_insert_" + i + ".txt";
+                String fileName = "E:\\图片数据处理\\跑size文件\\V2_delete_photo_id_insert_" + i + ".txt";
                 String insertSql = "INSERT INTO photo_delete_id (photo_id) VALUES";
                 FileWriter fileWriter = new FileWriter(fileName);
                 StringBuilder insertBuilder = new StringBuilder();
@@ -217,7 +217,8 @@ public class FileHelper {
         //new FileHelper().getTargetPhotodata();
 
 
-        File file = new File("E:\\图片数据处理\\跑size文件\\hotel_photo_deleteId.txt");
+        //File file = new File("E:\\图片数据处理\\跑size文件\\hotel_photo_deleteId.txt");
+        File file = new File("E:\\图片数据处理\\跑size文件\\hotel_photo_deleteId_test2.txt");
         new FileHelper().txt2Sql(file);
         System.out.println("执行完成：" + file.getPath());
 

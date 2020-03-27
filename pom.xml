@@ -19,5 +19,6 @@
         <module>./demo-canalclient</module>
         <module>./demo-language</module>
         <module>./osm-demo</module>
+        <module>demo-starter</module>
     </modules>
 </project>

@@ -7,6 +7,8 @@ package com.sl.osmdemo.service;
  */
 public interface PhotoService {
 
-    void PhotoCompare(Long beginHotelId,Long endHotelId);
+    void PhotoCompare(Long beginHotelId, Long endHotelId);
+
+    void PhotoCompare2(Long beginHotelId, Long endHotelId);
 
 }

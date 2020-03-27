@@ -88,6 +88,49 @@ public class PhotoServiceImpl implements PhotoService {
         }
     }
 
+    @Override
+    public void PhotoCompare2(Long beginHotelId, Long endHotelId) {
+        Long currentHotelId = null;
+        try {
+            FileWriter fileWriter = new FileWriter("E:\\图片数据处理\\跑size文件\\hotel_photo_deleteId_test2.txt");
+            List<Hotel> hotelList = hotelMapper.selectHotelList(beginHotelId, endHotelId);
+            while (!CollectionUtils.isEmpty(hotelList)) {
+                List<Photo> deleteList = new ArrayList<>();
+                for (Hotel hotel : hotelList) {
+                    currentHotelId = hotel.getHotelId();
+
+                    Set<String> sizeSet = new HashSet<>();
+
+                    //房型图片去重
+                    List<Photo> roomPhotoList = photoMapper.getRoomPhotoByHotelId2(hotel.getHotelId());
+                    //不同房型重复图片也删除
+                    for (Photo photo : roomPhotoList) {
+                        if (Strings.isEmpty(photo.getSize())) {
+                            continue;
+                        }
+                        boolean flag = sizeSet.add(photo.getSize());
+                        //重复
+                        if (!flag) {
+                            deleteList.add(photo);
+                        }
+                    }
+                }
+
+                //write to txt
+                writeToTxt(deleteList, fileWriter);
+
+                Long beginId = hotelList.get(hotelList.size() - 1).getHotelId();
+                System.out.println("currrent begin HotelId:" + beginId);
+                hotelList = hotelMapper.selectHotelList(beginId, endHotelId);
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (Exception e) {
+            System.out.println("异常,HotelId" + currentHotelId);
+            e.printStackTrace();
+        }
+    }
+
     private void writeToTxt(List<Photo> deleteList, FileWriter fileWriter) throws IOException {
 
         for (Photo photo : deleteList) {

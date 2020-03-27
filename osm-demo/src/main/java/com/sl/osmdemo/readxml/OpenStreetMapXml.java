@@ -1,4 +1,4 @@
-package com.sl.osmdemo.readxml;
+package com.sl.osmdemo.readxml;/otter/canal/destinations/stdhoteldb3/1001/cursor
 
 import java.io.BufferedWriter;
 import java.io.File;

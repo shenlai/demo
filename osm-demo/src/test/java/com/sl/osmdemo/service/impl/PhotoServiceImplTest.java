@@ -21,7 +21,17 @@ public class PhotoServiceImplTest {
     public void photoCompare() {
 
         //photoService.PhotoCompare(0L, 6000000L);
-        photoService.PhotoCompare(1414407L, 1414409L);
+        photoService.PhotoCompare(30958L, 30959L);
+
+        System.out.println("************执行完成***************");
+    }
+
+
+    @Test
+    public void photoCompare2() {
+        //photoService.PhotoCompare(0L, 6000000L);
+        //photoService.PhotoCompare2(30958L, 30959L);
+        photoService.PhotoCompare2(0L, 6000000L);
 
         System.out.println("************执行完成***************");
     }
