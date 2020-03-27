@@ -11,8 +11,11 @@
         <module name="demo-language" />
         <module name="demo-mq-consumer" />
         <module name="demo-mq-provider" />
+        <module name="kafka-demo" />
+        <module name="language" />
         <module name="osm-demo" />
         <module name="springboot-cache" />
+        <module name="springboot-canalclient" />
         <module name="springboot-demo" />
         <module name="springboot-jdbc" />
         <module name="thread-learning" />
@@ -26,6 +29,18 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo-file" target="1.8" />
+      <module name="demo-mq-consumer" target="1.8" />
+      <module name="demo-mq-provider" target="1.8" />
+      <module name="kafka-demo" target="1.8" />
+      <module name="language" target="1.5" />
+      <module name="osm-demo" target="1.8" />
+      <module name="springboot-cache" target="1.8" />
+      <module name="springboot-canalclient" target="1.8" />
+      <module name="springboot-demo" target="1.8" />
+      <module name="springboot-jdbc" target="1.8" />
+      <module name="springbootdemo" target="1.5" />
+      <module name="springsource-learning" target="1.8" />
+      <module name="thread-learning" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
