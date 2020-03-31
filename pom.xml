@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sl.demo</groupId>
-    <artifactId>springbootdemo</artifactId>
+    <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>./kafka-demo</module>
+        <module>./demo-kafka</module>
         <module>./springboot-jdbc</module>
         <module>./thread-learning</module>
         <module>./autoconfig-bean</module>
@@ -16,9 +16,10 @@
         <module>./demo-mq-consumer</module>
         <module>./springboot-demo</module>
         <module>./springsource-learning</module>
-        <module>./springboot-canalclient</module>
-        <module>language-demo</module>
+        <module>./demo-canalclient</module>
+        <module>./demo-language</module>
         <module>./osm-demo</module>
         <module>jvm-demo</module>
+        <module>demo-starter</module>
     </modules>
 </project>
