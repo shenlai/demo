@@ -7,18 +7,18 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>./demo-kafka</module>
-        <module>./springboot-jdbc</module>
-        <module>./thread-learning</module>
-        <module>./autoconfig-bean</module>
-        <module>./springboot-cache</module>
-        <module>./demo-mq-provider</module>
-        <module>./demo-mq-consumer</module>
-        <module>./springboot-demo</module>
-        <module>./springsource-learning</module>
-        <module>./demo-canalclient</module>
-        <module>./demo-language</module>
-        <module>./osm-demo</module>
+        <module>demo-kafka</module>
+        <module>springboot-jdbc</module>
+        <module>thread-learning</module>
+        <module>autoconfig-bean</module>
+        <module>springboot-cache</module>
+        <module>demo-mq-provider</module>
+        <module>demo-mq-consumer</module>
+        <module>springboot-demo</module>
+        <module>springsource-learning</module>
+        <module>demo-canalclient</module>
+        <module>demo-language</module>
+        <module>osm-demo</module>
         <module>jvm-demo</module>
         <module>demo-starter</module>
     </modules>
