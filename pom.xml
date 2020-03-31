@@ -19,5 +19,6 @@
         <module>./springboot-canalclient</module>
         <module>language-demo</module>
         <module>./osm-demo</module>
+        <module>jvm-demo</module>
     </modules>
 </project>

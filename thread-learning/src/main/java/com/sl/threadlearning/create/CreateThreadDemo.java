@@ -6,7 +6,7 @@ package com.sl.threadlearning.create;
  * 1. 使用继承Thread类方式，继承Thread，重写run
  * 2. 实现runable接口方式（继承Thread类也是实现runable接口）
  * 3. 使用匿名内部类方式
- * 4. callable
+ * 4. callable !!!!!
  * 5. 使用线程池创建线程
  */
 public class CreateThreadDemo  extends   Thread {

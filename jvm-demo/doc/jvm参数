@@ -1,0 +1,12 @@
+
+
+13.1、代大小优化
+最关键参数：-Xms、 -Xmx 、-Xmn 、-XX:SurvivorRatio、-XX:MaxTenuringThreshold、-XX:PermSize、-XX:MaxPermSize
+
+-Xms、 -Xmx：通常设置为相同的值，避免运行时要不断扩展JVM内存，这个值决定了JVM heap所能使用的最大内存。
+        -Xms20M -Xmx20M
+-Xmn 决定了新生代空间的大小，新生代Eden、S0、S1三个区域的比率可以通过-XX:SurvivorRatio来控制(假如值为 4  表示：Eden:S0:S1 = 4:3:3 )
+        -Xmn10M 新生代10M 剩下的老年代   Xms-Xmn = 老年代
+-XX:MaxTenuringThreshold 控制对象在经过多少次minor GC之后进入老年代，此参数只有在Serial 串行GC时有效。
+
+-XX:PermSize、-XX:MaxPermSize 用来控制方法区的大小，通常设置为相同的值。
