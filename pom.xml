@@ -21,5 +21,6 @@
         <module>osm-demo</module>
         <module>jvm-demo</module>
         <module>demo-starter</module>
+        <module>spring-anno</module>
     </modules>
 </project>
