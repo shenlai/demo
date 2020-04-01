@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sl</groupId>
-    <artifactId>springboot-canalclient</artifactId>
+    <artifactId>demo-canalclient</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-canalclient</name>
+    <name>demo-canalclient</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

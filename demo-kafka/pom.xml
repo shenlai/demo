@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sl.kafkademo</groupId>
-    <artifactId>kafka-demo</artifactId>
+    <artifactId>demo-kafka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>kafka-demo</name>
+    <name>demo-kafka</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
