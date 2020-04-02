@@ -1,4 +1,4 @@
-package com.sl.javalanguage;
+package com.javalanguage;
 
 public interface jdk8Interface {
 

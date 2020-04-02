@@ -1,7 +1,5 @@
-package com.sl.javalanguage;
+package com.javalanguage;
 
-import com.sl.threadlearning.ThreadLocalDemo;
-import com.sl.threadlearning.ThreadLocalRes;
 import org.junit.Test;
 
 import java.util.Arrays;
