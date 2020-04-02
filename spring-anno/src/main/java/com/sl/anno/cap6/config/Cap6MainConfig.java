@@ -48,7 +48,8 @@ public class Cap6MainConfig {
      *      3.2: ImportSelector:是一个接口,返回需要导入到容器的组件的全类名数组
      *      3.3: ImportBeanDefinitionRegistrar:可以手动添加组件到IOC容器, 所有Bean的注册可以使用BeanDifinitionRegistry
      *           写JamesImportBeanDefinitionRegistrar实现ImportBeanDefinitionRegistrar接口即可
-     *  4,使用Spring提供的FactoryBean(工厂bean)进行注册
+     *
+     *  4,使用Spring提供的FactoryBean(工厂bean)进行注册  !!!!!!! 注意！！！！
      *
      *
      */
@@ -59,8 +60,12 @@ public class Cap6MainConfig {
     }
 
 
-//    @Bean
-//    public JamesFactoryBean jamesFactoryBean() {
-//        return new JamesFactoryBean();
-//    }
+    /**
+     * JamesFactoryBean 本身也作为bean注入
+     * @return
+     */
+    @Bean
+    public JamesFactoryBean jamesFactoryBean() {
+        return new JamesFactoryBean();
+    }
 }
