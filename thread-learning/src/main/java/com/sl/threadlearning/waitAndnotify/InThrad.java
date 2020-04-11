@@ -2,9 +2,9 @@ package com.sl.threadlearning.waitAndnotify;
 
 
 /**
- *  线程同步中使用：
- *  wait作用：让当前线程从运行状态变成休眠状态（等待状态），释放锁的资源
- *  notify: 让线程从休眠状态变为运行状态
+ * 线程同步中使用：
+ * wait作用：让当前线程从运行状态变成休眠状态（等待状态），释放锁的资源
+ * notify: 让线程从休眠状态变为运行状态
  */
 public class InThrad extends Thread {
     private Res res;
@@ -40,7 +40,6 @@ public class InThrad extends Thread {
                 // 唤醒当前线程（唤起消费者）
                 res.notify();
             }
-
         }
     }
 }
