@@ -29,9 +29,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 6、必须告诉Spring哪个类是切面类(给切面类上加一个注解：@Aspect)
  * 7、给配置类中加 @EnableAspectJAutoProxy 【开启基于注解的aop模式】
  * <p>
- * AOP原理：【看给容器中注册了什么组件，这个组件什么时候工作，这个组件的功能是什么？】
+ * AOP原理：【【看给容器中注册了什么组件，这个组件什么时候工作，这个组件的功能是什么？】】
  *
- * @EnableAspectJAutoProxy； 1、@EnableAspectJAutoProxy是什么？
+ * @EnableAspectJAutoProxy；
+ * 1、@EnableAspectJAutoProxy是什么？
  * @Import(AspectJAutoProxyRegistrar.class)：给容器中导入AspectJAutoProxyRegistrar 利用AspectJAutoProxyRegistrar自定义给容器中注册bean；BeanDefinetion
  * internalAutoProxyCreator=AnnotationAwareAspectJAutoProxyCreator
  * <p>

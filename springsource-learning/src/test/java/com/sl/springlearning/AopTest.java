@@ -18,7 +18,7 @@ public class AopTest {
 
         //2. 从容器中获取MathCaculator
         MathCaculator cal = applicationContext.getBean(MathCaculator.class);
-        cal.div(10, 2);
+        cal.div(10, 0);
 
         /*
         String[] definitionNames = applicationContext.getBeanDefinitionNames();
