@@ -9,7 +9,7 @@ package com.sl.threadlearning.safe;
  * 2. synchronized 同步函数  使用this锁
  * 3. synchronized 静态同步函数  使用的锁是该函数所属的字节码文件 即类名.class锁
  */
-public class ThreadTrainTicket implements Runnable {
+public class SynchronizedDemo implements Runnable {
 
     //private int count = 100;
     //当一个变量被static修饰时，
@@ -71,7 +71,7 @@ public class ThreadTrainTicket implements Runnable {
     public void run() {
         if (flag) {
             while (count > 0) {
-                synchronized (ThreadTrainTicket.class) {
+                synchronized (SynchronizedDemo.class) {
                     if (count > 0) {
                         try {
                             Thread.sleep(50);

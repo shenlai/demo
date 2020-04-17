@@ -76,7 +76,6 @@ public class CreateThreadDemoTest {
         //借助Thread类 启动线程
         Thread thread = new Thread(t);
         thread.start();
-
         for (int i = 0; i < 30; i++) {
             System.out.println("主线程 i:" + i);
         }

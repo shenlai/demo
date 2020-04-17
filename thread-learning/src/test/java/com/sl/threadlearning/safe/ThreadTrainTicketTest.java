@@ -12,7 +12,7 @@ public class ThreadTrainTicketTest {
     @Test
     public  void testThreadSafe() throws InterruptedException {
 
-        ThreadTrainTicket threadTrain1 = new ThreadTrainTicket();
+        SynchronizedDemo threadTrain1 = new SynchronizedDemo();
         Thread t1 = new Thread(threadTrain1, "①号窗口");
         Thread t2 = new Thread(threadTrain1, "②号窗口");
         Thread t3 = new Thread(threadTrain1, "③号窗口");
@@ -31,7 +31,7 @@ public class ThreadTrainTicketTest {
     @Test
     public  void testThreadThisLock() throws InterruptedException {
 
-        ThreadTrainTicket threadTrain1 = new ThreadTrainTicket();
+        SynchronizedDemo threadTrain1 = new SynchronizedDemo();
         Thread t1 = new Thread(threadTrain1, "①号窗口");
         Thread t2 = new Thread(threadTrain1, "②号窗口");
         t1.start();
