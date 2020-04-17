@@ -6,7 +6,6 @@ import org.junit.Test;
 /**
  * 1. 测试 用户线程，守护线程  主线程
  * 2. 测试线程优先级
- *
  */
 public class CreateThreadDemoRunnableTest {
 
@@ -34,8 +33,9 @@ public class CreateThreadDemoRunnableTest {
 
     /**
      * 测试线程优先级 Join
-     * join作用是让其他线程变为等待, 	t1.join();// 让其他线程变为等待，直到当前t1线程执行完毕，才释放。
+     * t1.join作用是让当前线程变为等待,等待t1销毁;// 让其他线程变为等待，直到当前t1线程执行完毕，才释放。
      * thread.Join把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。比如在线程B中调用了线程A的Join()方法，直到线程A执行完毕后，才会继续执行线程B。
+     *
      * @throws InterruptedException
      */
     @Test
@@ -61,6 +61,7 @@ public class CreateThreadDemoRunnableTest {
 
     /**
      * 三个线程t1 t2 t3 要求执行顺序为 t1 t2 t3
+     *
      * @throws InterruptedException
      */
     @Test
@@ -76,7 +77,11 @@ public class CreateThreadDemoRunnableTest {
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                //t1.join(); 保证t1在t2执行前执行，执行它时会等待t1执行完成
+//                try {
+//                    t1.join(); //保证t1在t2执行前执行，执行它时会等待t1执行完成
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 for (int i = 0; i < 30; i++) {
                     System.out.println("我是t2子线程...ID" + Thread.currentThread().getId() + "   当前运行index:" + i);
                 }
@@ -86,6 +91,11 @@ public class CreateThreadDemoRunnableTest {
         Thread t3 = new Thread(new Runnable() {
             @Override
             public void run() {
+//                try {
+//                    t2.join(); //保证t2在t3执行前执行，执行它时会等待t2执行完成
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 for (int i = 0; i < 30; i++) {
                     System.out.println("我是t3子线程...ID" + Thread.currentThread().getId() + "   当前运行index:" + i);
                 }
