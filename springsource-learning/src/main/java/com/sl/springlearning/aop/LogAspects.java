@@ -2,9 +2,11 @@ package com.sl.springlearning.aop;
 
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -21,8 +23,6 @@ public class LogAspects {
     @Pointcut("execution(public int com.sl.springlearning.aop.MathCaculator.*(..))")
     public void pointCut() {
     }
-
-    ;
 
     //@Before在目标方法之前切入；切入点表达式（指定在哪个方法切入）
     @Before("pointCut()")
@@ -47,6 +47,15 @@ public class LogAspects {
     @AfterThrowing(value = "pointCut()", throwing = "exception")
     public void logException(JoinPoint joinPoint, Exception exception) {
         System.out.println("" + joinPoint.getSignature().getName() + "异常。。。异常信息：{" + exception + "}");
+    }
+
+    //必须手动执行调用目标方法
+    @Around("pointCut()")
+    public Object Around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("@Arount:执行目标方法之前...");
+        Object obj = proceedingJoinPoint.proceed();//相当于开始调div地
+        System.out.println("@Arount:执行目标方法之后...");
+        return obj;
     }
 
 }

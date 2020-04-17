@@ -15,8 +15,8 @@ public class Cap8Test {
 
     @Test
     public void test01() {
-        // 容器启动加载配置类--> refresh() --> finishBeanFactoryInitialization()--> getBean() -->doCreateBean()
-        // -->beanWrapper(对象创建) -->populated(属性赋值，遍历所有后置处理器) -->inializate()
+            // 容器启动加载配置类--> refresh() --> finishBeanFactoryInitialization()--> getBean() -->doCreateBean()
+            // -->beanWrapper(对象创建) -->populated(属性赋值，遍历所有后置处理器) -->inializate()
         AnnotationConfigApplicationContext app = new AnnotationConfigApplicationContext(Cap8MainConfig.class);
 
         System.out.println("IOC容器创建完成........");
