@@ -85,10 +85,18 @@ public class ProxyUtil {
                 paramsContent = paramsContent.substring(0, paramsContent.lastIndexOf(",") - 1);
             }
 
-            methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ") {" + line
-                    + tab + tab + "System.out.println(\"log\");" + line
-                    + tab + tab + "target." + methodName + "(" + paramsContent + ");" + line
-                    + tab + "}" + line;
+            //void
+            if (returnTypeName.equalsIgnoreCase("void")) {
+                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ") {" + line
+                        + tab + tab + "System.out.println(\"代理植入逻辑\");" + line
+                        + tab + tab + "target." + methodName + "(" + paramsContent + ");" + line
+                        + tab + "}" + line;
+            } else {
+                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ") {" + line
+                        + tab + tab + "System.out.println(\"代理植入逻辑\");" + line
+                        + tab + tab + "return target." + methodName + "(" + paramsContent + ");" + line
+                        + tab + "}" + line;
+            }
 
         }
 
@@ -119,6 +127,7 @@ public class ProxyUtil {
 
             //加载到虚拟机
             URL[] urls = new URL[]{new URL("file:D:\\\\")};
+            //不在项目工程中，所以使用URLClassLoader加载
             URLClassLoader urlClassLoader = new URLClassLoader(urls);
             Class clazz = urlClassLoader.loadClass("com.google.$Proxy");
 
