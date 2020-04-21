@@ -23,5 +23,6 @@
         <module>demo-starter</module>
         <module>spring-anno</module>
         <module>demo-dubbo</module>
+        <module>demo-dubbo-spi</module>
     </modules>
 </project>
