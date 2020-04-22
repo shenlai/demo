@@ -17,7 +17,7 @@ public class ConsumerStater {
         System.out.println("ConsumerStater started ...");
 
         for (int i = 0; i < 100; i++) {
-            DemoService demoSevice = context.getBean("demoService", DemoService.class);
+            DemoService demoSevice = (DemoService)context.getBean("demoService", DemoService.class);
             demoSevice.sayHello("dubbo");
             Thread.sleep(1000);
         }
