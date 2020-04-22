@@ -1,5 +1,8 @@
 package com.sl.luban.proxyCustom.dao;
 
 public interface LubanDao {
-    public void query();
+
+    void query();
+
+    String proxy(String msg);
 }

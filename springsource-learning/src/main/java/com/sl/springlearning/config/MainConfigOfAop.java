@@ -1,6 +1,7 @@
 package com.sl.springlearning.config;
 
-import com.sl.springlearning.aop.LogAspects;
+import com.sl.springlearning.aop.MathCaculatorV2;
+import com.sl.springlearning.aspects.LogAspects;
 import com.sl.springlearning.aop.MathCaculator;
 import com.sl.springlearning.aoptest.AroundClass;
 import com.sl.springlearning.aoptest.AroundTwoClass;
@@ -31,8 +32,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * <p>
  * AOP原理：【【看给容器中注册了什么组件，这个组件什么时候工作，这个组件的功能是什么？】】
  *
- * @EnableAspectJAutoProxy；
- * 1、@EnableAspectJAutoProxy是什么？
+ * @EnableAspectJAutoProxy； 1、@EnableAspectJAutoProxy是什么？
  * @Import(AspectJAutoProxyRegistrar.class)：给容器中导入AspectJAutoProxyRegistrar 利用AspectJAutoProxyRegistrar自定义给容器中注册bean；BeanDefinetion
  * internalAutoProxyCreator=AnnotationAwareAspectJAutoProxyCreator
  * <p>
@@ -51,6 +51,12 @@ public class MainConfigOfAop {
     @Bean
     public MathCaculator calculator() {
         return new MathCaculator();
+    }
+
+    //业务逻辑类加入容器中
+    @Bean
+    public MathCaculatorV2 calculatorV2() {
+        return new MathCaculatorV2();
     }
 
     //切面类加入到容器中

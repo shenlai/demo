@@ -1,4 +1,4 @@
-package com.sl.springlearning.aop;
+package com.sl.springlearning.aspects;
 
 
 import org.aspectj.lang.JoinPoint;
@@ -20,7 +20,7 @@ public class LogAspects {
     //抽取公共的切入点表达式
     //1、本类引用
     //2、其他的切面引用
-    @Pointcut("execution(public int com.sl.springlearning.aop.MathCaculator.*(..))")
+    @Pointcut("execution(public * com.sl.springlearning.aop.*.*(..))")
     public void pointCut() {
     }
 

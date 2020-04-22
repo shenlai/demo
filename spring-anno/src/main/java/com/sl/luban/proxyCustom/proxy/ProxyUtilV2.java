@@ -1,11 +1,13 @@
 package com.sl.luban.proxyCustom.proxy;
 
-import com.sun.jndi.toolkit.url.UrlUtil;
+
+import com.sl.luban.proxyCustom.dao.CoustomInvocationHandler;
 
 import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -13,43 +15,44 @@ import java.net.URLClassLoader;
 
 /**
  * 实现动态代理
- * <p>
- * 补充两个原则：
- * 1:开闭原则
- * 2:单一职责
- * 参考：2018-11-4(20)-手写动态代理，动态代理逻辑的实现
+ * InvocationHandler作用:
+ * 官方解释比较拗口，InvocationHandler的作用其实就是关联目标类与代理类，
+ * InvocationHandler实现中传入目标类对象，在动态生成的代理类中传入InvocationHandler实例（看一下以下生成的代理类代码一目了然）
+ * 为什么不 直接在代理类中传入目标类？  => 代理通常实现逻辑增强，增强逻辑怎么传？
  */
-public class ProxyUtil {
-    //region
-    /**
-     * 生成的$Proxy.java 代理类文件内容
-     *
-     * package com.google;
-     * import com.sl.luban.proxyCustom.dao.LubanDao;
-     * public class $Proxy implements LubanDao{
-     * 	private LubanDao target;
-     * 	public $Proxy (LubanDao target){
-     * 		this.target =target;
-     *        }
-     * 	public void query() {
-     * 		System.out.println("log");
-     * 		target.query();
-     *    }
-     * }
-     */
-    //endregion
+public class ProxyUtilV2 {
+
 
     /**
-     * content --->string
-     * .java  io
-     * .class
-     * .new   反射----》class
+     * 生成的代理类：
+     * <p>
+     * package com.google;
+     * import com.sl.luban.proxyCustom.dao.UserDao;
+     * import com.sl.luban.proxyCustom.dao.CoustomInvocationHandler;
+     * import java.lang.Exception;import java.lang.reflect.Method;
+     * public class $Proxy implements UserDao{
+     * <p>
+     * private CoustomInvocationHandler h;
+     * <p>
+     * public $Proxy (CoustomInvocationHandler h){
+     * this.h =h;
+     * }
+     * public void query() {
+     * Method method = Class.forName("com.sl.luban.proxyCustom.dao.UserDao").getDeclaredMethod("query");
+     * return h.invoke(method);
+     * }
+     * public String query2()throws Exception {
+     * Method method = Class.forName("com.sl.luban.proxyCustom.dao.UserDao").getDeclaredMethod("query2");
+     * return (String)h.invoke(method);
+     * }
+     * }
      *
+     * @param targetInf
+     * @param h
      * @return
      */
-    public static Object newInstance(Object target) {
+    public static Object newInstance(Class targetInf, CoustomInvocationHandler h) {
         Object proxy = null;
-        Class targetInf = target.getClass().getInterfaces()[0];
         //Class targetInf = target.getClass();
         Method methods[] = targetInf.getDeclaredMethods();
         String line = "\n";
@@ -57,25 +60,27 @@ public class ProxyUtil {
         String infName = targetInf.getSimpleName();
         String content = "";
         String packageContent = "package com.google;" + line;
-        String importContent = "import " + targetInf.getName() + ";" + line;
+        String importContent = "import " + targetInf.getName() + ";" + line
+                + "import com.sl.luban.proxyCustom.dao.CoustomInvocationHandler;" + line
+                + "import java.lang.Exception;"
+                + "import java.lang.reflect.Method;" + line;
         String clazzFirstLineContent = "public class $Proxy implements " + infName + "{" + line;
-        String filedContent = tab + "private " + infName + " target;" + line;
-        String constructorContent = tab + "public $Proxy (" + infName + " target){" + line
-                + tab + tab + "this.target =target;"
+        String filedContent = tab + "private CoustomInvocationHandler h;" + line;
+        String constructorContent = tab + "public $Proxy (CoustomInvocationHandler h){" + line
+                + tab + tab + "this.h =h;"
                 + line + tab + "}" + line;
         String methodContent = "";
         for (Method method : methods) {
             String returnTypeName = method.getReturnType().getSimpleName();
             String methodName = method.getName();
-            // Sting.class String.class
+
             Class args[] = method.getParameterTypes();
             String argsContent = "";
             String paramsContent = "";
             int flag = 0;
             for (Class arg : args) {
                 String temp = arg.getSimpleName();
-                //String
-                //String p0,Sting p1,
+
                 argsContent += temp + " p" + flag + ",";
                 paramsContent += "p" + flag + ",";
                 flag++;
@@ -87,16 +92,17 @@ public class ProxyUtil {
 
             //void
             if (returnTypeName.equalsIgnoreCase("void")) {
-                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ") {" + line
-                        + tab + tab + "System.out.println(\"代理植入逻辑\");" + line     //TODO  写死代理植入逻辑， JDK如何实现植入逻辑的？
-                        + tab + tab + "target." + methodName + "(" + paramsContent + ");" + line
-                        + tab + "}" + line;
+                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ")throws Exception {" + line
+                        + tab + tab + "Method method = Class.forName(\"" + targetInf.getName() + "\").getDeclaredMethod(\"" + methodName + "\");" + line
+                        + tab + tab + "h.invoke(method);" + line;
+                methodContent += tab + "}" + line;
             } else {
-                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ") {" + line
-                        + tab + tab + "System.out.println(\"代理植入逻辑\");" + line
-                        + tab + tab + "return target." + methodName + "(" + paramsContent + ");" + line
-                        + tab + "}" + line;
+                methodContent += tab + "public " + returnTypeName + " " + methodName + "(" + argsContent + ")throws Exception {" + line
+                        + tab + tab + "Method method = Class.forName(\"" + targetInf.getName() + "\").getDeclaredMethod(\"" + methodName + "\");" + line
+                        + tab + tab + "return (" + returnTypeName + ")h.invoke(method);" + line;   //返回类型强转
+                methodContent += tab + "}" + line;
             }
+
 
         }
 
@@ -131,11 +137,10 @@ public class ProxyUtil {
             URLClassLoader urlClassLoader = new URLClassLoader(urls);
             Class clazz = urlClassLoader.loadClass("com.google.$Proxy");
 
-            Constructor constructor = clazz.getConstructor(targetInf);
+            Constructor constructor = clazz.getConstructor(CoustomInvocationHandler.class);
 
             //构造代理类的对象，将目标对象传入
-            proxy = constructor.newInstance(target);
-
+            proxy = constructor.newInstance(h);
 
             //clazz.newInstance();
             //Class.forName()
