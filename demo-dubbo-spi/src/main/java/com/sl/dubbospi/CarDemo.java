@@ -20,6 +20,7 @@ public class CarDemo {
 //        redCar.getColor();
 
 
+        //AOP  CarWrapper  、CarWrapper
         Car benz = extensionLoader.getExtension("benz");
 
         Map<String, String> map = new HashMap<String, String>();
