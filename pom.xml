@@ -24,6 +24,6 @@
         <module>spring-anno</module>
         <module>demo-dubbo</module>
         <module>demo-dubbo-spi</module>
-        <module>demo-zookeeper</module>
+        <module>demo-zkclient</module>
     </modules>
 </project>
