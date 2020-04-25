@@ -2,19 +2,41 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--<parent>-->
+        <!--<artifactId>demo</artifactId>-->
+        <!--<groupId>com.sl.demo</groupId>-->
+        <!--<version>0.0.1-SNAPSHOT</version>-->
+        <!--<relativePath>../pom.xml</relativePath>-->
+    <!--</parent>-->
     <parent>
-        <artifactId>demo</artifactId>
-        <groupId>com.sl.demo</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>demo-zookeeper</artifactId>
+    <groupId>com.sl.demo</groupId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>demo-zkclient</module>
+        <module>demo-service-provider</module>
+        <module>demo-service-consumer</module>
     </modules>
+    <properties>
+        <zookeeper-version>3.4.11</zookeeper-version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper-version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>
