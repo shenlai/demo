@@ -15,16 +15,24 @@ public abstract class ZookeeperAbstractLock extends AbstractLock {
     private static ZkClient zkClient = null;
     private static Object lock = new Object();
 
-    protected ZkClient getInstance() {
-        if (zkClient == null) {
-            synchronized (lock) {
-                if (zkClient == null) {
-                    zkClient = new ZkClient(ConnectString);
-                }
-            }
-        }
-        return zkClient;
-    }
+//    protected ZkClient getInstance() {
+//        if (zkClient == null) {
+//            synchronized (lock) {
+//                if (zkClient == null) {
+//                    zkClient = new ZkClient(ConnectString);
+//                }
+//            }
+//        }
+//        return zkClient;
+//    }
+
+
+//    static {
+//        zkClient = new ZkClient(ConnectString);
+//    }
+
+
+    protected ZkClient getInstance = new ZkClient(ConnectString);
 
     protected static final String path = "/lock";
 

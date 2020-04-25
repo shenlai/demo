@@ -6,6 +6,8 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 基于ZKClient 实现分布式锁
+ * 监听器的缺点： 如果有大量请求来获取锁，当释放锁后，所有的线程都收到通知，都来获取锁！产生羊群效应！
+ * 解决办法： 获取锁的线程排队，顺序获取
  */
 public class ZookeeperDistrbuteLock extends ZookeeperAbstractLock {
 
@@ -17,7 +19,7 @@ public class ZookeeperDistrbuteLock extends ZookeeperAbstractLock {
     public boolean tryLock() {
         try {
             //创建临时节点
-            getInstance().createEphemeral(path);
+            getInstance.createEphemeral(path);
             return true;
         } catch (Exception e) {
             //创建失败
@@ -50,13 +52,13 @@ public class ZookeeperDistrbuteLock extends ZookeeperAbstractLock {
         };
 
         //注册事件监听
-        getInstance().subscribeDataChanges(path, iZkDataListener);
+        getInstance.subscribeDataChanges(path, iZkDataListener);
 
 
         try {
             //等待直到 接收到事件通知
             //如果节点存在
-            if (getInstance().exists(path)) {
+            if (getInstance.exists(path)) {
                 countDownLatch = new CountDownLatch(1);
                 countDownLatch.await();
             }
@@ -64,17 +66,17 @@ public class ZookeeperDistrbuteLock extends ZookeeperAbstractLock {
             e.printStackTrace();
         }
         //删除监听
-        getInstance().unsubscribeDataChanges(path, iZkDataListener);
+        getInstance.unsubscribeDataChanges(path, iZkDataListener);
     }
 
 
     @Override
     public void unLock() {
-        if (getInstance() != null) {
-            getInstance().delete(path);
-            //getInstance().close();
-            System.out.println("释放锁资源");
-        }
+//        if (getInstance != null) {
+//            getInstance.delete(path);
+//            getInstance.close();
+//            System.out.println("释放锁资源");
+//        }
 
     }
 

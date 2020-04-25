@@ -1,10 +1,13 @@
 package com.sl.zklock;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class ZookeeperDistrbuteLockTest implements Runnable {
 
-    private ILock lock = new ZookeeperDistrbuteLock();
+    //private ILock lock = new ZookeeperDistrbuteLock();
+    private ILock lock = new ZookeeperDistrbuteLockV2();
 
     private OrderNumGenerator orderNumGenerator = new OrderNumGenerator();
 
@@ -23,6 +26,7 @@ public class ZookeeperDistrbuteLockTest implements Runnable {
             lock.getLock();
             String number = orderNumGenerator.getNumber();
             System.out.println("线程：" + Thread.currentThread().getName() + "生成ID" + number);
+            TimeUnit.SECONDS.sleep(5);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -45,12 +49,19 @@ public class ZookeeperDistrbuteLockTest implements Runnable {
 
         //new ZookeeperDistrbuteLockTest().getNumberWithLock();
 
-        //TODO 有问题，为什么运行不了50次？？
-        for (int i = 0; i < 50; i++) {
+
+//        for (int i = 0; i < 50; i++) {
+//            new Thread(new ZookeeperDistrbuteLockTest()).start();
+//        }
+
+        //new ZookeeperDistrbuteLockTest().getNumberWithLock();
+        //测试V2
+
+        for (int i = 0; i < 10; i++) {
             new Thread(new ZookeeperDistrbuteLockTest()).start();
         }
 
-        System.in.read();
+        //System.in.read();
 
     }
 

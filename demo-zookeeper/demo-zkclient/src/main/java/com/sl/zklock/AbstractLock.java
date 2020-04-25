@@ -14,7 +14,7 @@ public abstract class AbstractLock implements ILock {
             //等待
             waitLock();
             // 重新获取去锁资源
-            getLock();
+            //getLock();
         }
 
     }
