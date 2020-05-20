@@ -62,7 +62,7 @@ public class ActiveMqConfiguration {
     @Bean
     public JmsListenerContainerFactory<?> jmsListenerContainerTopic(ActiveMQConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
-        bean.setPubSubDomain(true);
+        bean.setPubSubDomain(true); //开启 发布订阅模式
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }

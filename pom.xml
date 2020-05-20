@@ -22,7 +22,7 @@
         <module>jvm-demo</module>
         <module>demo-starter</module>
         <module>spring-anno</module>
-        <!--<module>demo-dubbo</module>-->
+        <module>demo-dubbo</module>
         <module>demo-dubbo-spi</module>
         <module>demo-zookeeper</module>
     </modules>
