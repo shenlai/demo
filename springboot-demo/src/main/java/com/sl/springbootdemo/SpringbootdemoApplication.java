@@ -34,22 +34,22 @@ public class SpringbootdemoApplication {
 
 		//CommandLineRunner、ApplicationRunner
   		//扩展
-		SpringApplication application = new SpringApplication(SpringbootdemoApplication.class);
+		//SpringApplication application = new SpringApplication(SpringbootdemoApplication.class);
 		//添加到applicaiton上下文中或者通过配置项配置context.initializer.class,多个使用逗号分隔，也可在通过在META-INF/spring.factories中配置
 		//application.addInitializers(new ApplicationContextInitializerTest());
 		//application.setBannerMode(Banner.Mode.OFF);
-		application.run(args).close();
+		//application.run(args).close();
 
 
 
 		//ApplicationContext
 		//事件监听
-		//SpringApplication application = new SpringApplication(SpringbootdemoApplication.class);
+		SpringApplication application = new SpringApplication(SpringbootdemoApplication.class);
 		//需要把监听器加入到spring容器中
 		//application.addListeners(new ApplicationListenerTest());
 		//Set<ApplicationListener<?>> listeners = application.getListeners();
 
-	 	//ConfigurableApplicationContext context =  application.run(args);
+	 	ConfigurableApplicationContext context =  application.run(args);
 		//发布事件
 		//context.publishEvent(new ApplicationEventTest(new Object()));
 
@@ -57,7 +57,7 @@ public class SpringbootdemoApplication {
 //@Import 测试
 	 	//System.out.println(context.getBeansOfType(TomcatProperties.class));
 		//System.out.println(context.getBean(TomcatProperties.class));
-		//System.out.println(context.getBean(Configdemo.class));
+		System.out.println(context.getBean(Configdemo.class));
 		//System.out.println(context.getBeansOfType(Configdemo.class));
 		//System.out.println(context.getBeanFactory());
 
@@ -71,7 +71,7 @@ public class SpringbootdemoApplication {
 
 		//System.out.println(context.getEnvironment().getProperty("file.encoding"));
 
-		//context.close();
+		context.close();
 
 		//SpringApplication.run(SpringbootdemoApplication.class, args);
 	}

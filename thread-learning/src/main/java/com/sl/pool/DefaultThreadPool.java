@@ -8,7 +8,8 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @Author: https://www.jianshu.com/p/d5d7035b6f26
  * @Date: 2020/5/19
- * 从线程池的实现中可以看出，当客户端调用execute(Job)方法时，会不断地向任务列表jobs中添加Job，而每个工作* 者线程会不读的从jobs上获取Job来执行，当jobs为空时，工作者线程进入WAITING状态。
+ * 从线程池的实现中可以看出，当客户端调用execute(Job)方法时，会不断地向任务列表jobs中添加Job，
+ * 而每个工作* 者线程会不读的从jobs上获取Job来执行，当jobs为空时，工作者线程进入WAITING状态。
  * @Description:
  */
 public class DefaultThreadPool implements MyThreadPool {

@@ -2,6 +2,7 @@ package com.sl.threadlearning.pool;
 
 import org.junit.Test;
 
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -10,10 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolTest {
 
     /**
-     *  可缓存的线程池 重复利用
+     *  线程池为无限大，当执行第二个任务时第一个任务已经完成，会复用执行第一个任务的线程，而不用每次新建线程
+     *  重复利用
      */
     @Test
     public void testCacheThreadPool() throws InterruptedException {
+
         ExecutorService newCacheThreadPool = Executors.newCachedThreadPool();
         System.out.println("可缓存的线程池：");
         for(int i=0;i<10;i++){

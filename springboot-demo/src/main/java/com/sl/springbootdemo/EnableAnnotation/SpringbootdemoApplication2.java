@@ -20,10 +20,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 //@EnableLog(name="springboot demo")
 
 
-@Import({ImportByConfiguration.class, //导入bean配置类，则配置类中bean也将注入到spring容器
-        ImportSelectorTest.class,     //ImportSelector接口方式
-        ImportBeanDefinitionRegistrarTest.class  //ImportBeanDefinitionRegistrar接口方式
-})
+//@Import({ImportByConfiguration.class, //导入bean配置类，则配置类中bean也将注入到spring容器
+//        ImportSelectorTest.class,     //ImportSelector接口方式
+//        ImportBeanDefinitionRegistrarTest.class  //ImportBeanDefinitionRegistrar接口方式
+//})
 //@ComponentScan
 @SpringBootApplication
 public class SpringbootdemoApplication2 {
