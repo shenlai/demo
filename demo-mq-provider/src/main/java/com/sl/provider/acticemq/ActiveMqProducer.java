@@ -21,6 +21,9 @@ public class ActiveMqProducer {
     private JmsTemplate jmsTemplate;
 
 
+
+
+    //test
     public void sendToQueue(String queue, Object message) {
         if (Strings.isNullOrEmpty(queue)) {
             log.error("queue can not empty");
