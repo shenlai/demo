@@ -34,6 +34,11 @@ public class CountDownLatchTest {
             @Override
             public void run() {
                 System.out.println("子线程," + Thread.currentThread().getName() + "开始执行...");
+                try {
+                    Thread.sleep(10*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 countDownLatch.countDown();
                 System.out.println("子线程," + Thread.currentThread().getName() + "..执行后countDownLatch数值：" + countDownLatch.getCount());
                 System.out.println("子线程," + Thread.currentThread().getName() + "结束执行...");

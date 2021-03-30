@@ -40,7 +40,7 @@ public class StopThreadTst {
         int i = 0;
         while (true) {
             System.out.println("thread main..");
-            if (i == 300) {
+            if (i == 3) {
                 // stopThread1.stopThread();
                 thread1.interrupt();
                 thread2.interrupt();
