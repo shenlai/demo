@@ -19,29 +19,29 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable("id") Long id) {
 
-        Product product = productService.getProductById(id);
+        Product product = productService.getProductByIdV2(id);
         return product;
     }
 
 
-    //prooduct?productid=1&productName= &
-    @GetMapping("/product")
-    public Product updateProduct(Product product) {
-        productService.updateProduct(product);
-        return product;
-    }
-
-    @GetMapping("/delproduct")
-    public String delProduct(@RequestParam(value="id") Long id) {
-
-        productService.deleteProductById(id);
-        return "ok";
-    }
-
-    @GetMapping("/product/name/{productName}")
-    public Product getEmpByLastName(@PathVariable("productName") String productName){
-        return productService.getProductByName(productName);
-    }
+//    //prooduct?productid=1&productName= &
+//    @GetMapping("/product")
+//    public Product updateProduct(Product product) {
+//        productService.updateProduct(product);
+//        return product;
+//    }
+//
+//    @GetMapping("/delproduct")
+//    public String delProduct(@RequestParam(value="id") Long id) {
+//
+//        productService.deleteProductById(id);
+//        return "ok";
+//    }
+//
+//    @GetMapping("/product/name/{productName}")
+//    public Product getEmpByLastName(@PathVariable("productName") String productName){
+//        return productService.getProductByName(productName);
+//    }
 
 
 }

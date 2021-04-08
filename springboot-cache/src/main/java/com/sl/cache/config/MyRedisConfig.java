@@ -21,7 +21,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.net.UnknownHostException;
 import java.time.Duration;
 
-@Configuration
+//@Configuration
 public class MyRedisConfig {
 
     /*
@@ -38,7 +38,7 @@ public class MyRedisConfig {
 
 
 
-    @Bean(name = "redisTemplate")
+    //@Bean(name = "redisTemplate")
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
 
         RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
@@ -54,8 +54,8 @@ public class MyRedisConfig {
 
 
     //参考：https://blog.csdn.net/sy793314598/article/details/80719224
-    @Primary
-    @Bean
+//    @Primary
+//    @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory){
         //缓存配置对象
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
