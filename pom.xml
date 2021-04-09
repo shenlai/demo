@@ -7,22 +7,24 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>demo-kafka</module>
-        <module>springboot-jdbc</module>
-        <module>thread-learning</module>
-        <module>autoconfig-bean</module>
-        <module>springboot-cache</module>
-        <module>demo-mq-provider</module>
-        <module>demo-mq-consumer</module>
-        <module>springboot-demo</module>
-        <module>springsource-learning</module>
-        <module>demo-canalclient</module>
-        <module>demo-language</module>
-        <module>osm-demo</module>
-        <module>jvm-demo</module>
-        <module>demo-starter</module>
-        <module>spring-anno</module>
-        <module>demo-zookeeper</module>
+        <!--        <module>demo-kafka</module>-->
+        <!--        <module>springboot-jdbc</module>-->
+        <!--       <module>thread-learning</module>-->
+        <!--        <module>autoconfig-bean</module>-->
+        <!--    <module>springboot-cache</module> -->
+        <!--        <module>demo-mq-provider</module>-->
+        <!--        <module>demo-mq-consumer</module>-->
+        <!--        <module>springboot-demo</module>-->
+        <!--        <module>springsource-learning</module>-->
+        <!--        <module>demo-canalclient</module>-->
+        <!--        <module>demo-language</module>-->
+        <!--        <module>osm-demo</module>-->
+        <!--         <module>jvm-demo</module>-->
+        <!--            <module>demo-opencv</module>-->
+        <!--        <module>demo-starter</module>-->
+        <!--        <module>spring-anno</module>-->
+        <!--        <module>demo-zookeeper</module>-->
+        <module>demo-es</module>
     </modules>
 
     <!--解决idea maven工程的module的Language Level总是自动变到5-->
