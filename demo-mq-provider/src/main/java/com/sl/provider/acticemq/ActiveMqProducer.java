@@ -21,6 +21,11 @@ public class ActiveMqProducer {
     private JmsTemplate jmsTemplate;
 
 
+
+
+    //test
+
+    //test shenlai 提交git显示用户
     public void sendToQueue(String queue, Object message) {
         if (Strings.isNullOrEmpty(queue)) {
             log.error("queue can not empty");

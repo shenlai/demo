@@ -4,6 +4,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 阻塞队列
+ */
 public class ProducerThread implements Runnable {
 
     private BlockingQueue queue;

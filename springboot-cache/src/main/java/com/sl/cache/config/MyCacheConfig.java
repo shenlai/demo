@@ -7,7 +7,7 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-@Configuration
+//@Configuration
 public class MyCacheConfig {
 
     @Bean("myKeyGenerator")

@@ -5,7 +5,7 @@ import com.sl.cache.mapper.ProductMapper;
 import com.sl.cache.service.RedisLockService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
+//import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -47,7 +47,7 @@ public class SpringbootCacheApplicationTests {
 
     //@Test
     public void test2() {
-        Product product =  productMapper.getProductById(4L);
+       // Product product =  productMapper.getProductById(4L);
         //stringRedisTemplate.opsForValue().set("productid4",product);
         //默认如果保存对象，使用jdk序列化机制，序列化后的数据保存到redis中
         //redisTemplate.opsForValue().set("productid4",product);
@@ -63,9 +63,9 @@ public class SpringbootCacheApplicationTests {
 
     //@Test
     public void contextLoads() {
-        Product product = productMapper.getProductById(4L);
-
-        System.out.println(product);
+//        Product product = productMapper.getProductById(4L);
+//
+//        System.out.println(product);
     }
 
     @Test

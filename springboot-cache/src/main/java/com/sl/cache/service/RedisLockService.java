@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisLockService {
 
-    @Autowired
+    //@Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     private static String key = "lock-test";
