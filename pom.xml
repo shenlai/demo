@@ -9,7 +9,7 @@
     <modules>
         <!--        <module>demo-kafka</module>-->
         <!--        <module>springboot-jdbc</module>-->
-        <!--       <module>thread-learning</module>-->
+               <module>thread-learning</module>
         <!--        <module>autoconfig-bean</module>-->
         <!--    <module>springboot-cache</module> -->
         <!--        <module>demo-mq-provider</module>-->
