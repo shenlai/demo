@@ -5,6 +5,9 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+/**
+ * 自定义锁
+ */
 public class MyLock implements Lock {
 
     private Helper helper=new Helper();

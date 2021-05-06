@@ -32,7 +32,7 @@ public class DefaultThreadPool implements MyThreadPool {
     /**
      * 维护一个任务列表，里面加入客户端发起的任务
      */
-    private final LinkedList<Runnable> jobs = new LinkedList<>();
+    private LinkedList<Runnable> jobs = new LinkedList<>();
 
 
     private List<MyWorker> workers = new ArrayList<>();
